@@ -1,0 +1,29 @@
+{
+  "name": "static-web-ab-testing",
+  "version": "1.0.0",
+  "description": "A/B testing example for gatsby",
+  "main": "index.js",
+  "repository": "git@github.com:stoltzrobin/static-web-ab-testing.git",
+  "author": "Robin <robin.stoltz@danielwellington.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "yarn run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "dependencies": {
+    "gatsby": "^2.18.12",
+    "gatsby-transformer-json": "^2.2.22",
+    "gatsby-source-filesystem": "^2.1.43",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
