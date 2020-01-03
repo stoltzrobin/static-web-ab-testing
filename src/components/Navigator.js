@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 const Wrapper = styled.div``
 
 const NavContainer = styled.div`
-  background-color: magenta;
+  background-color: #f0f;
   height: 70px;
   display: flex;
   align-items: center;
