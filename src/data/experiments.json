@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "variants": [
+      {
+        "weight": 0.5,
+        "css": "body * { background-color: green }",
+        "variant": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "variants": [
+      {
+        "weight": 0.8,
+        "css": "body * { background-color: green }",
+        "variant": 1
+      }
+    ]
+  }
+]
