@@ -9,7 +9,7 @@ const ExperimentContext = createContext(initialState)
 export const useExperiment = () => useContext(ExperimentContext)
 
 const ExperimentProvider = ({ children, helper }) => {
-  console.log('Hlper: ', helper);
+  console.log('Helper: ', helper);
   return (
     <ExperimentContext.Provider
       value={{
