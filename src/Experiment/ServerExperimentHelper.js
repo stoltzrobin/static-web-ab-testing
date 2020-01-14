@@ -1,6 +1,6 @@
 import React from "react"
 
-function setExperimentGroup(id, savedVariant, weights, randomValue) {
+export function setExperimentGroup(id, savedVariant, weights, randomValue) {
   for (let i = 1; i <= weights.length; i += 1) {
     if (
       savedVariant === i.toString() ||
@@ -8,7 +8,7 @@ function setExperimentGroup(id, savedVariant, weights, randomValue) {
     ) {
       console.log("Ab Testing Variant: ", i)
       localStorage.setItem(`abtesting-${id}`, i)
-      const elem = document.getElementById(id)
+      const elem = document.getElementById(id + i)
       elem.removeAttribute("type")
       elem.innerHTML = elem.innerHTML + "" // Issue with safari so we need to modify the script to run
       return i
@@ -18,7 +18,7 @@ function setExperimentGroup(id, savedVariant, weights, randomValue) {
   return 0
 }
 
-class ServerExperimentHelper {
+export class ServerExperimentHelper {
   styles = {}
   scripts = {}
 
@@ -30,7 +30,7 @@ class ServerExperimentHelper {
     this.scripts[id] = variations
   }
 
-  generateScriptElement() {
+  generateScriptElements() {
     return Object.keys(this.scripts).map(scriptKey => {
       const weights = this.scripts[scriptKey].reduce(
         (acc, currentValue, index) =>
@@ -56,14 +56,21 @@ class ServerExperimentHelper {
     })
   }
 
-  getVariation() {
-    return 1
+  generateStyleElements() {
+    return Object.keys(this.styles)
+      .map(styleKey =>
+        this.styles[styleKey] ? (
+          <style
+            type="not css"
+            id={styleKey}
+            dangerouslySetInnerHTML={{ __html: this.styles[styleKey] }}
+          />
+        ) : null
+      )
+      .filter(Boolean)
   }
-}
 
-export default ServerExperimentHelper
-
-console.log("hejsan")
-;() => {
-  console.log("This is a script tag!")
+  getVariation() {
+    return 0
+  }
 }

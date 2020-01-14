@@ -1,7 +1,7 @@
 import React from "react"
 import { renderToString } from "react-dom/server"
 import { Navigator } from "./src/components/Navigator"
-import ServerExperimentHelper from "./src/Experiment/ServerExperimentHelper"
+import { ServerExperimentHelper } from "./src/Experiment/ServerExperimentHelper"
 import ExperimentProvider from "./src/context/ExperimentContext"
 
 export const replaceRenderer = ({
@@ -17,5 +17,8 @@ export const replaceRenderer = ({
     </ExperimentProvider>
   )
   replaceBodyHTMLString(renderToString(body))
-  setPreBodyComponents([serverExperimentHelper.generateScriptElement()])
+  setPreBodyComponents([
+    serverExperimentHelper.generateStyleElements(),
+    serverExperimentHelper.generateScriptElements(),
+  ])
 }
