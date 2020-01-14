@@ -9,12 +9,11 @@ const ExperimentContext = createContext(initialState)
 export const useExperiment = () => useContext(ExperimentContext)
 
 const ExperimentProvider = ({ children, helper }) => {
-  console.log('Hlper: ', helper);
   return (
     <ExperimentContext.Provider
       value={{
-        addExperiment: helper.addExperiment,
-        getVariation: helper.getVariation,
+        addExperiment: helper.addExperiment.bind(helper),
+        getVariation: helper.getVariation.bind(helper),
       }}
     >
       {children}

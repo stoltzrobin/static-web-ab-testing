@@ -1,17 +1,22 @@
 [
   {
-    "id": 1,
-    "variants": [
+    "id": "123abc",
+    "variations": [
       {
         "weight": 0.5,
         "css": "body * { background-color: green }",
         "variant": 1
+      },
+      {
+        "weight": 0.3,
+        "css": "body * { background-color: green }",
+        "variant": 2
       }
     ]
   },
   {
-    "id": 2,
-    "variants": [
+    "id": "234def",
+    "variations": [
       {
         "weight": 0.8,
         "css": "body * { background-color: green }",

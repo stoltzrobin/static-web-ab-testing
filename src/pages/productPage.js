@@ -33,10 +33,13 @@ const getExperiments = query =>
 export default ({ data }) => {
   const { getVariation, addExperiment } = useExperiment()
   const expData = getExperiments(data)
-  console.log("data: ", expData)
-  if (expData) {
+  if (expData.length > 0) {
     expData.forEach(exp =>
-      addExperiment({ id: exp.id, testCase: exp.id, variations: exp.variations })
+      addExperiment({
+        id: exp.id,
+        testCase: exp.id,
+        variations: exp.variations,
+      })
     )
   }
   return (
@@ -62,7 +65,7 @@ export const query = graphql`
       edges {
         node {
           id
-          variants {
+          variations {
             css
             variant
             weight
