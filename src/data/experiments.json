@@ -4,12 +4,12 @@
     "variations": [
       {
         "weight": 0.5,
-        "css": "body * { background-color: green }",
+        "css": "#gatsby-focus-wrapper > div { background-color: green }",
         "variant": 1
       },
       {
         "weight": 0.3,
-        "css": "body * { background-color: green }",
+        "css": "#gatsby-focus-wrapper > div { background-color: yellow }",
         "variant": 2
       }
     ]
@@ -19,7 +19,7 @@
     "variations": [
       {
         "weight": 0.8,
-        "css": "body * { background-color: green }",
+        "css": "#___gatsby > div > div.Navigator__NavContainer-sc-1u3cfpb-1.hvLXvr { background-color: #389fd0 }",
         "variant": 1
       }
     ]
