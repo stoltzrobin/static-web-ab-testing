@@ -22,6 +22,7 @@ export const Navigator = ({ children }) => (
     <NavContainer>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/productPage">Product Page</NavLink>
+      <NavLink to="/clientABTest">Client AB Test</NavLink>
     </NavContainer>
     {children}
   </Wrapper>

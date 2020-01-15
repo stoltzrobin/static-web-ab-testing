@@ -6,16 +6,33 @@ export function setExperimentGroup(id, savedVariant, weights, randomValue) {
       savedVariant === i.toString() ||
       (savedVariant === null && randomValue > weights[i - 1])
     ) {
-      console.log("Ab Testing Variant: ", i)
       localStorage.setItem(`abtesting-${id}`, i)
       const elem = document.getElementById(id + i)
-      elem.removeAttribute("type")
-      elem.innerHTML = elem.innerHTML + "" // Issue with safari so we need to modify the script to run
+      if (elem !== null) {
+        elem.removeAttribute("type")
+        elem.innerHTML = elem.innerHTML + "" // Issue with safari so we need to modify the script to run
+      }
       return i
     }
   }
   localStorage.setItem(`abtesting-${id}`, 0)
   return 0
+}
+
+function editStyleTag(variant, testCases, scriptKey, styleElement) {
+  for (let i = 1; i <= testCases[scriptKey].length; i += 1) {
+    if (variant === i) {
+      styleElement.innerText = `.abtesting-${scriptKey} {display: initial !important} .defaultVariant-${scriptKey} {display: none !important}`
+      return
+    }
+  }
+  styleElement.innerText = `.defaultVariant-${scriptKey} {display: initial !important}`
+}
+
+function generateATFScript(variant, testCases, scriptKey) {
+  const styleElement = document.createElement("style")
+  editStyleTag(variant, testCases, scriptKey, styleElement)
+  document.head.append(styleElement)
 }
 
 export class ServerExperimentHelper {
@@ -43,12 +60,17 @@ export class ServerExperimentHelper {
       return (
         <script
           dangerouslySetInnerHTML={{
-            __html: `console.log('hejsan');
+            __html: `
             ${setExperimentGroup.toString()}
+            ${editStyleTag.toString()}
+            ${generateATFScript.toString()}
             var sv = localStorage.getItem("abtesting-${scriptKey}");
-            setExperimentGroup("${scriptKey}", sv, ${JSON.stringify(
+            var variant = setExperimentGroup("${scriptKey}", sv, ${JSON.stringify(
               weights
             )}, Math.random());
+            generateATFScript(variant, ${JSON.stringify(
+              this.scripts
+            )}, "${scriptKey}");
             `,
           }}
         />
