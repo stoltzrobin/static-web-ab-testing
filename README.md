@@ -3,8 +3,8 @@ This is one possible way how you can create A/B testing with gatsby or any other
 
 How to do AB-testing with a static web site (Gatsby in this case)
 
-# Pre-requisites && Installation
-Install the dependencies
+# Pre-requisites & Installation
+Install the dependencies using yarn
 
 ```shell
 yarn
